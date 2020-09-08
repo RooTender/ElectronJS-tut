@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping list</title>
+    <ul>
+
+    </ul>
 </head>
 <body>
     <h1>Shopping list</h1>
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        const ul = document.querySelector('ul');
+
+        ipcRenderer.on('item:add', (e, item) => {
+            const li = document.createElement('li');
+            const itemText = document.createTextNode(item);
+            li.appendChild(itemText);
+            ul.appendChild(li);
+        })
+    </script>
 </body>
 </html>
