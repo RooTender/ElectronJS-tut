@@ -1,0 +1,14 @@
+{
+  "name": "electronjs-tut",
+  "version": "1.0.0",
+  "description": "Just ElectronJS tut",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hubert Lewandowski",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^10.1.1"
+  }
+}
