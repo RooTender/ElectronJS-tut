@@ -19,6 +19,11 @@ app.on('ready', function() {
     // menu toolbar
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
     Menu.setApplicationMenu(mainMenu);
+
+    // close other apps on quit
+    mainWindow.on('closed', () => {
+        app.quit();
+    })
 })
 
 // Handle create add window
@@ -34,6 +39,9 @@ function createAddWindow() {
         protocol: 'file:',
         slashes: true
     }));
+
+    // Garbage collector handler
+    addWindow.on('close', () => addWindow = null);
 }
 
 // Create menu template
