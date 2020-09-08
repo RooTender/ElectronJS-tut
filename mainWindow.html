@@ -21,6 +21,10 @@
             li.appendChild(itemText);
             ul.appendChild(li);
         })
+
+        ipcRenderer.on('item:clear', () => {
+            ul.innerHTML = '';
+        })
     </script>
 </body>
 </html>
