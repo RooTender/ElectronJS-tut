@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping list</title>
-    <ul>
-
-    </ul>
 </head>
 <body>
-    <h1>Shopping list</h1>
+    <nav>
+        <div class="nav-wrapper">
+            <a class="brand-logo center">Shopping list</a>
+        </div>
+    </nav>
+    <ul></ul>
+
+
     <script>
         const electron = require('electron');
         const {ipcRenderer} = electron;
@@ -17,7 +22,11 @@
 
         // Add item
         ipcRenderer.on('item:add', (e, item) => {
+            ul.className = 'collection';
+
             const li = document.createElement('li');
+            li.className = 'collection-item';
+
             const itemText = document.createTextNode(item);
             li.appendChild(itemText);
             ul.appendChild(li);
@@ -26,12 +35,20 @@
         // Clear items
         ipcRenderer.on('item:clear', () => {
             ul.innerHTML = '';
+            fixOnEmptyList();
         })
 
         // Remove item
-        ul.addEventListener('dbclick', removeItem);
+        ul.addEventListener('dblclick', removeItem);
         function removeItem(e) {
             e.target.remove();
+            fixOnEmptyList();
+        }
+
+        function fixOnEmptyList() {
+            if (ul.childElementCount <= 0) {
+                ul.className = '';
+            }
         }
 
     </script>
