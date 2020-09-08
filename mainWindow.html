@@ -15,6 +15,7 @@
         const {ipcRenderer} = electron;
         const ul = document.querySelector('ul');
 
+        // Add item
         ipcRenderer.on('item:add', (e, item) => {
             const li = document.createElement('li');
             const itemText = document.createTextNode(item);
@@ -22,9 +23,17 @@
             ul.appendChild(li);
         })
 
+        // Clear items
         ipcRenderer.on('item:clear', () => {
             ul.innerHTML = '';
         })
+
+        // Remove item
+        ul.addEventListener('dbclick', removeItem);
+        function removeItem(e) {
+            e.target.remove();
+        }
+
     </script>
 </body>
 </html>
