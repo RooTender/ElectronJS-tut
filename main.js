@@ -68,3 +68,8 @@ const mainMenuTemplate = [
         ]
     }
 ];
+
+// handling mac
+if (process.platform == 'darwin') {
+    mainMenuTemplate.unshift({});
+}
